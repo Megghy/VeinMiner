@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Blend for Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeinMiner", "DamageStatistic\VeinMiner.csproj", "{45F39A34-EFCD-4732-87B5-E7A1E759B234}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeinMiner", "VeinMiner\VeinMiner.csproj", "{45F39A34-EFCD-4732-87B5-E7A1E759B234}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
