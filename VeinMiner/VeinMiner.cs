@@ -130,20 +130,22 @@ namespace VeinMiner
         {
             Task.Run(() =>
             {
-                if (!list.Any()) return;
-                var minX = list[0].X;
+                if (!list.Any())
+                    return;
+                /*var minX = list[0].X;
                 var minY = list[0].Y;
                 var maxX = minX;
-                var maxY = minY;
+                var maxY = minY;*/
                 list.ForEach(p =>
                 {
-                    if (p.X < minX) minX = p.X;
+                    /*if (p.X < minX) minX = p.X;
                     if (p.X > maxX) maxX = p.X;
                     if (p.Y < minY) minY = p.Y;
-                    if (p.Y > maxY) maxY = p.Y;
+                    if (p.Y > maxY) maxY = p.Y;*/
                     WorldGen.KillTile(p.X, p.Y, false, false, noItem);
+                    NetMessage.SendData(17, -1, -1, null, 4, p.X, p.Y, false.GetHashCode());
                 });
-                NetMessage.SendTileSquare(-1, minX, minY, maxX - minX + 1, maxY - minY + 1, Terraria.ID.TileChangeType.None);
+                //NetMessage.SendTileSquare(-1, minX, minY, maxX - minX + 1, maxY - minY + 1, Terraria.ID.TileChangeType.None);
             });
         }
         public static Task<List<Point>> GetVein(List<Point> list, int x, int y, int type)
