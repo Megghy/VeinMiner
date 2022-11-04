@@ -22,7 +22,11 @@ namespace VeinMiner
         public bool Enable = true;
         public bool Broadcast = true;
         public bool PutInInventory = true;
+<<<<<<< HEAD
         public List<int> Tile = new() { 7, 166, 6, 167, 9, 168, 8, 169, 56, 107, 221, 108, 222, 111, 223, 211, 37, 22, 204, 58 };
+=======
+        public List<int> Tile = new() { 7, 166, 6, 167, 9, 168, 8, 169, 37, 22, 204, 56, 58, 107, 221, 108, 222, 111, 223, 211, 408, 123, 224, 404 };
+>>>>>>> 99b60fe (Fixed default ores list)
         public List<Exchange> Exchange = new()
         {
             new()

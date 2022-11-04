@@ -14,8 +14,8 @@ namespace VeinMiner
     {
         public override string Name => "VeinMiner";
         public override Version Version => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;    
-        public override string Author => "Megghy";
-        public override string Description => "连锁挖矿";
+        public override string Author => "Megghy|YSpoof";
+        public override string Description => "VeinMiner by Megghy but with TShock 5 support!";
         internal static Config Config = new();
         public VeinMiner(Main game) : base(game)
         {
@@ -34,15 +34,15 @@ namespace VeinMiner
                     if (args.Parameters.Count >= 1)
                     {
                         result.EnableBroadcast = !result.EnableBroadcast;
-                        tsp.SendMessage($"[c/95CFA6:<VeinMiner> 提示已{(result.EnableBroadcast ? "开启" : "关闭")}.]", Color.White);
+                        tsp.SendMessage($"[c/95CFA6:<VeinMiner> Mining Status {(result.EnableBroadcast ? "Activated" : "Deactivated")}.]", Color.White);
                     }
                     else
                     {
                         result.Enable = !result.Enable;
-                        tsp.SendMessage($"[c/95CFA6:<VeinMiner> 连锁挖矿已{(result.Enable ? "开启" : "关闭")}.] 若需单独关闭或开启提示, 请输入/veinminer<或vm> msg", Color.White);
+                        tsp.SendMessage($"[c/95CFA6:<VeinMiner> {(result.Enable ? "Activated" : "Deactivated")}.] | To turn off mining status use: /vm msg", Color.White);
                     }
                 },
-                "veinminer", "连锁挖矿", "vm"));
+                "veinminer", "chain mining", "vm"));
             GetDataHandlers.TileEdit += OnTileEdit;
             TShockAPI.Hooks.GeneralHooks.ReloadEvent += Config.Load;
             ServerApi.Hooks.ServerJoin.Register(this, OnPlayerJoin);
@@ -93,13 +93,13 @@ namespace VeinMiner
                             KillTileAndSend(list, true);
                         else
                             GiveItem();
-                        plr.SendMessage($"[c/95CFA6:<VeinMiner>] 挖取 [c/95CFA6:{(item.type == 0 ? "Unknown" : item.Name)} {count} ]块, 奖励已发送.", Color.White);
+                        plr.SendMessage($"[c/95CFA6:<VeinMiner>] Mined [c/95CFA6: {count} {(item.type == 0 ? "Unknown" : item.Name)} ].", Color.White);
                         return;
                     }
                     else
                     {
-                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包空间不足, 无法发放奖励品. 至少需要 [c/95CFA6:{e.Item.Count}] 格.");
-                        plr.SendTileSquare(x, y, 1);
+                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{e.Item.Count}] .");
+                        plr.SendTileSquareCentered(x, y, 1);
                         return;
                     }
                 });
@@ -117,13 +117,13 @@ namespace VeinMiner
                     else
                     {
                         WorldGen.KillTile(x, y);
-                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] 背包空间不足, 无法将 [c/95CFA6:{count}] 个 [c/95CFA6:{item.Name}] 置入背包.");
+                        plr.SendInfoMessage($"[c/95CFA6:<VeinMiner>] Inventory full, space needed: [c/95CFA6:{count}] to insert [c/95CFA6:{item.Name}] .");
                     }
                 }
                 else
                     KillTileAndSend(list, false);
                 if (plr.GetData<VMStatus>("VeinMiner").EnableBroadcast && Config.Broadcast && count > 1)
-                    plr.SendMessage($"[c/95CFA6:<VeinMiner>] 连锁挖取 [c/95CFA6:{(item.type == 0 ? "Unknown" : item.Name)} {count}] 块.", Color.White);
+                    plr.SendMessage($"[c/95CFA6:<VeinMiner>] trying to mine [c/95CFA6:{count} {(item.type == 0 ? "Unknown" : item.Name)}].", Color.White);
             }
         }
         public static void KillTileAndSend(List<Point> list, bool noItem)
