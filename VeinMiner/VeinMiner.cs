@@ -14,7 +14,7 @@ namespace VeinMiner
     {
         public override string Name => "VeinMiner";
         public override Version Version => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;    
-        public override string Author => "Megghy|YSpoof";
+        public override string Author => "Megghy|YSpoof"; 
         public override string Description => "VeinMiner by Megghy but with TShock 5 support!";
         internal static Config Config = new();
         public VeinMiner(Main game) : base(game)

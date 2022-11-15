@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using TShockAPI;
 
 namespace VeinMiner
@@ -12,7 +7,7 @@ namespace VeinMiner
     {
         public static Item GetItemFromTile(int x, int y)
         {
-            WorldGen.KillTile_GetItemDrops(x,y, Main.tile[x, y], out int id, out int stack, out _, out _);
+            WorldGen.KillTile_GetItemDrops(x, y, Main.tile[x, y], out int id, out int stack, out _, out _);
             Item item = new();
             item.SetDefaults(id);
             item.stack = stack;
